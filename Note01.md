@@ -28,3 +28,17 @@
   : 웹 사이트의 전체 페이지를 하나의 페이지에 담아 동적으로 화면을 바꿔가며 표현
   - React Router DOM 을 통해 화면 이동
     참고 : [History API](https://developer.mozilla.org/ko/docs/Web/API/History_API)
+
+### React Router
+
+[Refer](https://reactrouter.com/docs/en/v6/getting-started/tutorial)
+
+### React Context
+
+> 로그인 상태를 기억하고 사용하기 위해 Context 사용  
+> Component에 정보를 제공하고 해당 정보를 업데이트하거나 지워줄 때 사용
+>
+> > [참고설명](./Note01_Context.md)
+
+[공식문서](https://ko.reactjs.org/docs/context.html#when-to-use-context)  
+: context를 이용하면 단계마다 일일이 props를 넘겨주지 않고도 컴포넌트 트리 전체에 데이터를 제공할 수 있습니다.
