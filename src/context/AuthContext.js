@@ -35,6 +35,7 @@ const AuthContextProvider = ({ children }) => {
   const signOut = () => {
     setisAuth(false);
     localStorage.removeItem("accessToken");
+    localStorage.removeItem("customUid");
     navigate("/login");
   };
 

@@ -23,7 +23,7 @@ function Header() {
             <img src={logo} alt="로고" />
           </Navbar.Brand>
           <Navbar.Collapse id="responsive-navbar-nav">
-            <Nav className="nav-justifed w-100 nav-fill">
+            <Nav className="nav-justified w-100 nav-fill">
               <Nav.Link href="/">iPhone</Nav.Link>
 
               {isAuth ? (
@@ -36,7 +36,7 @@ function Header() {
               ) : (
                 <>
                   <Nav.Link href="/login">Login</Nav.Link>
-                  <Nav.Link href="/user/cart">
+                  <Nav.Link href="/login">
                     <img src={cart} alt="cart" />
                   </Nav.Link>
                 </>
