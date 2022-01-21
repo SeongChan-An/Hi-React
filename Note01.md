@@ -48,3 +48,43 @@
 > 컴포넌트 내에서 변하는 데이터를 관리하고 싶을 때
 > import React, { useState } from 'react';
 > const [state, setstate] = useState(initialState)
+
+## Daum Post Code API
+
+- 공식 라이브러리
+  : [react-daum-postcode](https://www.npmjs.com/package/react-daum-postcode)
+- 편하게 사용하도록 만든 플러그인
+  : [actbase/react-daum-postcode](https://www.npmjs.com/package/@actbase/react-daum-postcode)
+
+설치
+**npm install @actbase/react-daum-postcode --save**
+
+### 팝업으로 사용할땐 아래와 같이 사용해도 됩니다.
+
+```jsx
+import Postcode from '@actbase/react-daum-postcode';
+...
+
+const YourView = () => {
+  const [isModal, setModal] = useState(false);
+  return (
+    <>
+      <Modal isVisible={isModal}>
+        <Postcode
+          style={{ width: 320, height: 320 }}
+          jsOptions={{ animated: true, hideMapBtn: true }}
+          onSelected={data => {
+            alert(JSON.stringify(data));
+            setModal(false);
+          }}
+        />
+      </Modal>
+      <Button onClick={() => setModal(true)}>주소찾기</Button>
+    </>
+  );
+}
+```
+
+실제 사용 부분
+[Component](src/components/PostCodeModal.js)
+[use in](src/pages/PaymentPage/PaymentPage.js)

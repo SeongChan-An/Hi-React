@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import Clayful from "clayful/client-js";
 import "./PaymentPage.css";
 import { useNavigate } from "react-router-dom";
+import PostCodeModal from "../../components/PostCodeModal";
 
 function PaymentPage() {
   const navigate = useNavigate();
@@ -40,6 +41,9 @@ function PaymentPage() {
     getCartData();
     getPaymentData();
   }, []);
+
+  const handleClose = () => setShow(false);
+  const handleShow = () => setShow(true);
 
   const getPaymentData = () => {
     let PaymentMethod = Clayful.PaymentMethod;
@@ -188,6 +192,31 @@ function PaymentPage() {
     });
   };
 
+  const handleCompletePostCode = (data) => {
+    let fullAddress = data.address;
+    let extraAddress = "";
+
+    if (data.addressType === "R") {
+      if (data.bname !== "") {
+        extraAddress += data.bname;
+      }
+      if (data.buildingName !== "") {
+        extraAddress +=
+          extraAddress !== "" ? `, ${data.buildingName}` : data.buildingName;
+      }
+      fullAddress += extraAddress !== "" ? ` (${extraAddress})` : "";
+    }
+
+    handleClose();
+    setAddress((prevState) => ({
+      ...prevState,
+      postCode: data.zonecode,
+      state: data.side,
+      city: data.sigungu,
+      address1: fullAddress,
+    }));
+  };
+
   const handleAddress2Change = (e) => {
     setAddress((prevState) => ({
       ...prevState,
@@ -304,6 +333,12 @@ function PaymentPage() {
             {paymentMethod === "bank-transfer" && (
               <p>계좌번호 : 1111-1111 클레이풀 은행</p>
             )}
+
+            <PostCodeModal
+              show={show}
+              handleClose={handleClose}
+              handleCompletePostCode={handleCompletePostCode}
+            />
           </div>
         </div>
       </div>
